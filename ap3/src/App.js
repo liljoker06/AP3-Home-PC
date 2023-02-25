@@ -15,7 +15,7 @@ import Inscription from './assets/js/Inscription';
 
 import {BrowserRouter} from 'react-router-dom';
 import ErrorBoundary from './assets/js/error';
-import Test from './assets/js/test';
+import Test from './assets/js/Test';
 function App() {
   return (
     <>
