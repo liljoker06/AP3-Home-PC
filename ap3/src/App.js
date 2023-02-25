@@ -14,14 +14,14 @@ import Connexion from './assets/js/connexion';
 import Inscription from './assets/js/Inscription';
 
 import {BrowserRouter} from 'react-router-dom';
-
-
-
+import ErrorBoundary from './assets/js/error';
+import Test from './assets/js/test';
 function App() {
   return (
     <>
     {/* ici nous avons les routes qui vont nous servir à changer de page je les nomme personnelement les Href du HTML  */}
     <BrowserRouter>
+    <ErrorBoundary>
     <Navbar/>
     <Routes>
     <Route path='/'  element={<Header/>}/>
@@ -29,10 +29,11 @@ function App() {
       <Route path='/Produit' element = {<Body/>}/>
       <Route path='/Accueil' element = {<Body/>}/>
       <Route path = '/Connexion' element = {<Connexion/>}/>
+      <Route path='/Inscription' element = {<Test/>}/>
       
-      <Route path='/Inscription' element = {<Inscription/>}/>
     </Routes>
     <Footer/>
+    </ErrorBoundary>
     </BrowserRouter>
     </>
     
