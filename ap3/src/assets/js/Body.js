@@ -9,11 +9,10 @@ import { Link } from 'react-router-dom'
 import Header from './Header';
 
 
-export default function Body(){
+const Body = () =>{
     const [produit, setQuiz ] =  useState([])
 
-	return ( <>
-    <Header/>
+	return ( 
 		<div className="product-section">
 			<div className="container">
 				<div className="row">
@@ -120,7 +119,9 @@ export default function Body(){
 				</div>
 			</div>
 		</div>
-        </>
+        
 
 	)
 }
+
+export default Body

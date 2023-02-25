@@ -6,9 +6,9 @@ import "../styles/Style.css"
 
 
 
-export default function Header() {
+const Header = () => {
     return (
-        <div class="hero" id ="nav">
+        <div className='hero'>
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-lg-5">
@@ -25,6 +25,11 @@ export default function Header() {
                     </div>
                 </div>
             </div>
+            
         </div>
+        
+        
     )
 }
+
+export default Header
