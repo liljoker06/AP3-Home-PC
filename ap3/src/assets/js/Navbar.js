@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 
 
 
+import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
+
 const  Navbar =() => {
   return (
 
@@ -25,27 +28,36 @@ const  Navbar =() => {
         <div className="collapse navbar-collapse" id="navbarsFurni">
           <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
             <li className="nav-item active">
-              <Link className="nav-link" to="/">Accueil</Link>
+              <NavLink className="nav-link" to="/">Accueil</NavLink>
             </li>
             <li>
-              <Link className="nav-link"  to = "/Produit">Produit</Link>
+              <NavLink className="nav-link"  to = "/Produit" as ={NavLink}>
+                Produit
+              </NavLink>
             </li>
             <li>
-              <Link className="nav-link" to="About">à propos de nous</Link>
+              <NavLink className="nav-link" to="About">à propos de nous</NavLink>
             </li>
             <li>
-              <Link className="nav-link" to='/Connexion'>Connexion</Link>
+              <NavLink className="nav-link" to='/Connexion'>Connexion</NavLink>
             </li>
             <li>
-              <Link className="nav-link" to='/Inscription'>Inscription</Link>
+              <NavLink className="nav-link" to='/Inscription'>Inscription</NavLink>
             </li>
             <li>
-              <a className="nav-link" href="blog.html">Nous contacter</a>
+              <Nav className="nav-link" href="blog.html">Nous contacter</Nav>
             </li>
             <li>
-              <a className="nav-link" href="blog.html" id="panier"><i className="fa-sharp fa-solid fa-cart-shopping fa-lg"></i></a>
+            
+          <Button
+            style={{ height: "3rem", position: "relative", background : "#f9bf29", borderColor: "#f9bf29" }}
+            variant="outline-primary"
+            className="rounded-circle"
+            onClick=""
+          >
+            <i class="fa-solid fa-cart-shopping" style={{color : "#cc0808"}}></i>
+          </Button>
             </li>
-
           </ul>
           
 

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "price":10.99,
+        "imgUrl":"../images/person_1.jpg"
+    },
+    {
+        "id": 1,
+        "price":10.99,
+        "imgUrl":"../images/person_2.jpg"
+    },
+    {
+        "id": 1,
+        "price":10.99,
+        "imgUrl":"../images/person_3.jpg"
+    },
+    {
+        "id": 1,
+        "price":10.99,
+        "imgUrl":"../images/person_4.jpg"
+    }
+   
+]
