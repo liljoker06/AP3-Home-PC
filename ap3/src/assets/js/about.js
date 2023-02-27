@@ -2,6 +2,8 @@ import React from 'react'
 import "../styles/About.css"
 import couch_png from '../images/couch.png'
 import "../styles/Style.css"
+import logo from "../images/About.png"
+import enfant from "../images/enfant.png"
 
 
 
@@ -12,14 +14,14 @@ const about =() => {
             <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
-                        <h1>Rêver plus<span class="d-block">GRAND</span></h1>
-                        <p class="mb-4">Magasins de sport. Vélos, skis, articles et matériel de sport pour la randonnée, la musculation, le fitness, le running, le football et toutes ...</p>
-                        <p><a href="a" class="btn btn-secondary me-2">Voir plus </a></p>
+                        <h1>M2L.<span class="d-block"></span></h1>
+                        <p class="mb-4" style={{color :"#fffff"}}><strong>La MAISON DES LIGUES DE LA LORAINNE, établissement du Conseil Régional de Lorraine, est responsable de la gestion du service des sports et en particulier des ligues sportives ainsi que d’autres structures hébergées. La M2L doit fournir les infrastructures matérielles, logistiques et des services à l’ensemble des ligues sportives installées. Elle assure l’offre de services et de support technique aux différentes ligues déjà implantées (ou à venir) dans la région. </strong></p>
+                        <p><a href="a" class="btn btn-secondary me-2">Voir nos produits </a></p>
                     </div>
                 </div>
                 <div class="col-lg-7">
                     <div class="hero-img-wrap">
-                        <img src={couch_png} alt="" class="img-fluid" />
+                        <img src={logo} alt="" class="img-fluid" />
                     </div>
                 </div>
             </div>
@@ -28,12 +30,13 @@ const about =() => {
             <div class="row justify-content-between">
                 <div class="col-lg-5">
                     <div class="intro-excerpt">
-                    <img src={couch_png} alt="" class="img-fluid" />
+                    <img src={enfant} alt="" class="img-fluid" />
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="hero-img-wrap">
-                        <img src={couch_png} alt="" class="img-fluid" />
+                <div class="col-lg-5">
+                    <div class="intro-excerpt">
+                        <h3 style ={{color : "white"}}>Si vous souhaitez nous faire un Don n'hésitez pas de nous écrire un message<span class="d-block"></span></h3>
+                        <p><a href="a" class="btn btn-secondary me-2">Contactez Nous</a></p>
                     </div>
                 </div>
             </div>
