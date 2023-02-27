@@ -167,7 +167,7 @@
     text-align: center;
     line-height: 40px;
     display: inline-block;
-    background: #dce5e4;
+    background: red;
     color: #3b5d50;
     border-radius: 50%;
 }
@@ -241,3 +241,4 @@
 textarea {
     height: auto !important;
 }
+

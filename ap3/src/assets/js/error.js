@@ -20,7 +20,7 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       // Vous pouvez personnaliser le rendu de l'erreur ici
-      return <h1>Une erreur s'est produite.</h1>;
+      return <h1>Une erreur s'est produite. idiot</h1>;
     }
 
     return this.props.children;

@@ -44,7 +44,9 @@ export default function Connexion (){
                     <h1 style ={{fontSize:'15px', textAlign: 'center', marginTop:'20'}}>{ConnexionStatus}</h1>
                     <button className="btn btn-warning mt-3" type="reset">supprimer</button>
                 </form>
+                <br/><br/>
             </div>
+            
         </div>
     )
 }
