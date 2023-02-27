@@ -14,11 +14,11 @@ import { NavLink } from "react-router-dom";
 const  Navbar =() => {
   return (
 
-    <nav className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+    <NavbarBs className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
       <script src="https://kit.fontawesome.com/d8b6aee33e.js" crossOrigin="anonymous"></script>
 
-      <div className="container">
+      <Container>
         <a className="navbar-brand" href="#nav"><img src={logo} alt="" className="logo" /></a>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,9 @@ const  Navbar =() => {
             onClick=""
           >
             <i class="fa-solid fa-cart-shopping" style={{color : "#cc0808"}}></i>
+            <div className='rounded-circle bg-danger d-flex justify-content-center align-items-center ' style={{position:"absolute", width:"1.5rem", height:"1.5rem", bottom:0, right:0, transform:"translate(25%, 25%)",}}>
+              3
+            </div>
           </Button>
             </li>
           </ul>
@@ -66,11 +69,11 @@ const  Navbar =() => {
 
 
 
-      </div>
+      </Container>
 
 
 
-    </nav>
+    </NavbarBs>
 
 
   )

@@ -16,7 +16,8 @@ import Inscription from './assets/js/Inscription';
 import {BrowserRouter} from 'react-router-dom';
 import ErrorBoundary from './assets/js/error';
 import Test from './assets/js/Test';
-import Store from './assets/js/Store';
+// import Store from './assets/js/Store';
+import Storeitem from './assets/js/Storeitem';
 function App() {
   return (
     <>
@@ -27,7 +28,7 @@ function App() {
     <Routes>
     <Route path='/'  element={<Header/>}/>
       <Route path='/About'  element={<About/>}/>
-      <Route path='/Produit' element = {<Store/>}/>
+      <Route path='/Produit' element = {<Storeitem/>}/>
       {/* <Route path='/Accueil' element = {<Body/>}/> */}
       <Route path = '/Connexion' element = {<Connexion/>}/>
       <Route path='/Inscription' element = {<Test/>}/>

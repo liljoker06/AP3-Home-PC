@@ -33,6 +33,19 @@ app.post ('/utilisateur', (req, res) => {
     )
 })
 
+app.get('/produit', (req, res) => {
+    const sql = 'SELECT * FROM produit';
+    con.query(sql, (error, results) => {
+    if (error) {
+      console.log('Erreur de récupération des produits : ', error);
+      res.status(500).json({ error });
+    } else {
+      console.log('Produits récupérés avec succès');
+      res.status(200).json(results);
+    }
+  });
+});
+
 
 
 app.listen(3001, () =>{
