@@ -39,7 +39,7 @@ const Footer = () => {
 							<div className="col-6 col-sm-6 col-md-3">
 								<ul className="list-unstyled">
 								<li>
-									<Link href="#">Services</Link>
+									<Link href="#">Nos Produit</Link>
 									</li>
 								</ul>
 							</div>
@@ -47,14 +47,14 @@ const Footer = () => {
 							<div className="col-6 col-sm-6 col-md-3">
 								<ul className="list-unstyled">
 								<li>
-									<Link href="#">Blog</Link>
+									<Link href="#">rejoignez nous</Link>
 								</li>
 								</ul>
 							</div>
 
 							<div className="col-6 col-sm-6 col-md-3">
 								<ul className="list-unstyled">
-								<li><Link href="#">Contact us</Link></li>
+								<li><Link href="#">Nous contacter</Link></li>
 								</ul>
 							</div>
 						</div>
