@@ -19,7 +19,7 @@ export default function Connexion (){
             if(response.data.message){
                 setConnexionStatus(response.data.Email);
             }else{
-                setConnexionStatus(response.data[0].Email);
+                setConnexionStatus(response.data[0].Nom);
 
             }
         })
