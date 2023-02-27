@@ -18,6 +18,8 @@ import ErrorBoundary from './assets/js/error';
 import Test from './assets/js/Test';
 // import Store from './assets/js/Store';
 import Storeitem from './assets/js/Storeitem';
+
+import Support from './assets/js/Support'
 function App() {
   return (
     <>
@@ -29,6 +31,7 @@ function App() {
     <Route path='/'  element={<Header/>}/>
       <Route path='/About'  element={<About/>}/>
       <Route path='/Produit' element = {<Storeitem/>}/>
+      <Route path = '/Support' element = {<Support/>}/>
       {/* <Route path='/Accueil' element = {<Body/>}/> */}
       <Route path = '/Connexion' element = {<Connexion/>}/>
       <Route path='/Inscription' element = {<Test/>}/>

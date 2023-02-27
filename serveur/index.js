@@ -33,6 +33,41 @@ app.post ('/utilisateur', (req, res) => {
     )
 })
 
+app.post ('/Connexion', (req, res) => {
+    const Email = req.body.Email
+    const Mdp = req.body.Mdp 
+
+    con.query("SELECT * FROM utilisateur WHERE Email = ? AND Mdp = ? ", [Email, Mdp],
+        (err, result) => {
+            if(err){
+                req.setEncoding({err: err});
+            }else{
+                if(result.length > 0){
+                    res.send(result);
+                }else{
+                    res.send({message : "Email ou Mot incorrect !"});
+                }
+            }
+        }
+    )
+})
+
+app.post ('/support', (req, res) => {
+    const Email = req.body.Email 
+    const Objet= req.body.Objet
+    const Message = req.body.Message
+
+    con.query('INSERT INTO support (Email, Objet, Message) Values(?,?,?)', [Email, Objet, Message],
+        (err, result) => {
+            if(result){
+                res.send(result);
+            }else{
+                res.send({message:"donnée incorrect"})
+            }
+        }
+    )
+})
+
 app.get('/produit', (req, res) => {
     const sql = 'SELECT * FROM produit';
     con.query(sql, (error, results) => {

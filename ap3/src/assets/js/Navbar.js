@@ -45,7 +45,7 @@ const  Navbar =() => {
               <NavLink className="nav-link" to='/Inscription'>Inscription</NavLink>
             </li>
             <li>
-              <Nav className="nav-link" href="blog.html">Nous contacter</Nav>
+              <NavLink className="nav-link" to ='/Support'>Nous contacter</NavLink>
             </li>
             <li>
             
