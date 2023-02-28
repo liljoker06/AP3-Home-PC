@@ -35,42 +35,6 @@ export default  function Test() {
     }
     return (
         <div className="App">
-
-                {/* // initialValues={{
-                //     Nom: "",
-                //     Prenom: "", 
-                //     Email: "",
-                //     Mdp: "",
-                // }}
-                
-                // onSubmit={data => {
-                //     console.log(data)
-
-                //     let formData = new FormData();
-                //     formData.append('Nom',data.Nom)
-                //     formData.append('Prenom',data.Prenom)
-                //     formData.append('Email',data.Email)
-                //     formData.append('Mdp',data.Mdp)
-                    
-                //     axios({
-                //         method : 'post', 
-                //         url : 'http://localhost/CoursSlam/AP3/ap3/src/assets/php/test.php/',
-                //         data : formData,
-                //         config : {headers : {'Content-Type' :'multipart/form-data' }}
-                //     })
-
-                //     .then(function (response) {
-                //         //ajout d'un nouveau client
-                //         console.log(response)
-                //         alert ('Nouveau utilisateur ajouter.');
-                //     })
-
-                //     .catch(function(response){
-                //         //Erreur d'ajout
-                //         console.log(response)
-                //     })
-                // }} */}
-
                 
                 <div className="form">
                     <div className="Title">inscription</div>
