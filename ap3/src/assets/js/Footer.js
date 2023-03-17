@@ -1,6 +1,4 @@
 import React from 'react' 
-import sofa from '../images/sofa.png'
-import envelope_outline from '../images/envelope-outline.svg'
 import "../styles/Footer.css"
 import "../styles/Style.css"
 import { Link } from 'react-router-dom'
