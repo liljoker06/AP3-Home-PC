@@ -1,20 +1,30 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
+const mariadb = require('mariadb')
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-const con = mysql.createConnection(
-    {
-        user: "root",
-        host: "localhost",
-        password: "",
-        database: "ap3",
-    }
-)
+// const con = mysql.createConnection(
+//     {
+//         user: "root",
+//         host: "localhost",
+//         password: "",
+//         database: "ap3",
+//     }
+// )
+
+require('dotenv').config()
+
+const con = mysql.createConnection({
+    host: process.env.DB_HOST,
+    database: process.env.DB_DTB,
+    user: process.env.DB_USER,
+    password: process.env.DB_PWD
+})
 
 app.post ('/utilisateur', (req, res) => {
     const Nom = req.body.Nom
