@@ -21,19 +21,20 @@ import Storeitem from './assets/js/Storeitem';
 import Admin from './assets/js/admin'
 
 import Support from './assets/js/Support'
+import ShoppingCartProvider from './context/ShoppingCartContext';
 function App() {
   return (
-    <>
-    {/* ici nous avons les routes qui vont nous servir à changer de page je les nomme personnelement les Href du HTML  */}
+    
     <BrowserRouter>
     <ErrorBoundary>
+    
     <Navbar/>
+    
     <Routes>
     <Route path='/'  element={<Header/>}/>
       <Route path='/About'  element={<About/>}/>
       <Route path='/Produit' element = {<Storeitem/>}/>
       <Route path = '/Support' element = {<Support/>}/>
-      {/* <Route path='/Accueil' element = {<Body/>}/> */}
       <Route path = '/Connexion' element = {<Connexion/>}/>
       <Route path='/Inscription' element = {<Test/>}/>
       <Route path='/Admin' element = {<Admin/>}/>
@@ -42,7 +43,7 @@ function App() {
     <Footer/>
     </ErrorBoundary>
     </BrowserRouter>
-    </>
+    
     
   );
 }
