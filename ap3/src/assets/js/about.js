@@ -3,12 +3,14 @@ import "../styles/About.css"
 import couch_png from '../images/couch.png'
 import "../styles/Style.css"
 import logo from "../images/About.png"
-import enfant from "../images/enfant.png"
-
+import enfant from "../images/enfant.png";
+import Navbar from './Navbar';
 
 
 const about =() => {
     return (
+        <div>
+            <Navbar/>
         <div class="hero" id ="nav">
         <div class="container">
             <div class="row justify-content-between">
@@ -42,6 +44,7 @@ const about =() => {
             </div>
         </div>
         </div>
+    </div>
 
     )
 }

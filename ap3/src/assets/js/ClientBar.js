@@ -33,7 +33,7 @@ const  NavbarClient =() => {
               </NavLink>
             </li>
             <li>
-              <NavLink className="nav-link" to="About">à propos de nous</NavLink>
+              <NavLink className="nav-link" to="/About">à propos de nous</NavLink>
             </li>
             <li>
               <NavLink className="nav-link" to='/Connexion'>Connexion</NavLink>

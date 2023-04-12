@@ -27,8 +27,6 @@ function App() {
     <BrowserRouter>
     <ErrorBoundary>
     
-    <Navbar/>
-    
     <Routes>
     <Route path='/'  element={<Header/>}/>
       <Route path='/About'  element={<About/>}/>

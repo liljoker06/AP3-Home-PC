@@ -5,6 +5,7 @@ import "../styles/Style.css";
 import '../styles/test.css';
 
 import Axios from 'axios';
+import Navbar from "./Navbar";
 
 
 
@@ -33,6 +34,7 @@ export default  function Support() {
     }
     return (
         <div className="App">
+            <Navbar/>
 
                 <div className="form">
                     <div className="Title">Contactez notre Support</div>

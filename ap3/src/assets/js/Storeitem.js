@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import Axios from 'axios';
 import { Button, Card, Container, Row } from 'react-bootstrap';
-
+import NavbarClient from './ClientBar';
 
 
 
@@ -49,6 +49,8 @@ function Produits() {
   }
 
   return (
+    <div>
+      <NavbarClient/>
     <Container className='body'>
       <h1>Liste des produits</h1>
       <Row>
@@ -84,6 +86,7 @@ function Produits() {
         }
       </Row>
     </Container>
+  </div>
   );
 }
 

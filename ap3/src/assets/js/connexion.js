@@ -5,6 +5,7 @@ import "../styles/Style.css"
 import Axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import Navbar from "./Navbar";
 
 export default function Connexion (){
     const {register, formState : {errors}} = useForm();
@@ -22,7 +23,7 @@ export default function Connexion (){
             console.log(res)
             if(res.status === 200) {
                 alert("Connexion reussi")
-                navigate("/Connecter")
+                navigate("/Produit")
             }else{
                 alert("Erreur de connexion")
             }
@@ -31,6 +32,7 @@ export default function Connexion (){
 
     return (
         <div className="App">
+            <Navbar/>
         <div className="form">
                     <div className="Title">Connexion</div>
                 <form className='form' onSubmit={connexion}>

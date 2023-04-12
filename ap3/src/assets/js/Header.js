@@ -2,12 +2,13 @@ import React from 'react'
 import couch_png from '../images/couch.png'
 import "../styles/Header.css"
 import "../styles/Style.css"
-
+import Navbar from './Navbar'
 
 
 
 const Header = () => {
     return (
+        <div> <Navbar/>
         <div className='hero'>
             <div class="container">
                 <div class="row justify-content-between">
@@ -27,7 +28,7 @@ const Header = () => {
             </div>
             
         </div>
-        
+    </div>
         
     )
 }
