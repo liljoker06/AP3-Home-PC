@@ -43,24 +43,52 @@ app.post ('/utilisateur', (req, res) => {
     )
 })
 
-app.post ('/Connexion', (req, res) => {
-    const Email = req.body.Email
-    const Mdp = req.body.Mdp 
+// app.post ('/Connexion', (req, res) => {
+//     const Email = req.body.Email
+//     const Mdp = req.body.Mdp 
 
-    con.query("SELECT * FROM utilisateur WHERE Email = ? AND Mdp = ? ", [Email, Mdp],
-        (err, result) => {
-            if(err){
-                req.setEncoding({err: err});
-            }else{
-                if(result.length > 0){
-                    res.send(result);
-                }else{
-                    res.send({message : "Email ou Mot incorrect !"});
-                }
-            }
-        }
-    )
-})
+//     con.query("SELECT * FROM utilisateur WHERE Email = ? AND Mdp = ? ", [Email, Mdp],
+//         (err, result) => {
+//             if(err){
+//                 req.setEncoding({err: err});
+//             }else{
+//                 if(result.length > 0){
+//                     res.send(result);
+//                 }else{
+//                     res.send({message : "Email ou Mot incorrect !"});
+//                 }
+//             }
+//         }
+//     )
+// })
+app.post('/connexion', async (req, res) => {  
+    const id = parseInt(req.params.id);
+    const { mail, mdp } = req.body;
+    let conn; 
+    try {
+      console.log("Lancement de la connexion");
+      conn = await pool.getConnection();
+      console.log("Lancement de la requête");
+      // Interroger la base de données pour récupérer l'utilisateur
+      const rows = await conn.query('SELECT * FROM utilisateur WHERE Email = ? AND Mdp = ?', [mail, mdp]);
+      console.log(rows);
+      // Si un utilisateur est trouvé, le renvoyer, sinon renvoyer une erreur d'authentification
+      if (rows.length === 1) {
+        res.status(200).json({message: "Connexion reussi !!"});
+      } else {
+        console.log("pas correct")
+        res.status(401).json({ message: "Nom d'utilisateur ou mot de passe incorrect." });
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Une erreur s'est produite lors de la connexion à la base de données." });
+    } finally {
+      if (conn) {
+        conn.release(); // Libérer la connexion à la base de données
+      }
+    }
+});
+
 
 app.post ('/support', (req, res) => {
     const Email = req.body.Email 

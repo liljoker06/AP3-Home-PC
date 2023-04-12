@@ -7,21 +7,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './assets/js/Navbar.js';
 import 'tiny-slider/dist/tiny-slider.css'; 
 import Header from './assets/js/Header.js';
-import Body from './assets/js/Body.js';
 import Footer from './assets/js/Footer';
 import About from './assets/js/about';
 import Connexion from './assets/js/connexion';
-import Inscription from './assets/js/Inscription';
+
 
 import {BrowserRouter} from 'react-router-dom';
 import ErrorBoundary from './assets/js/error';
-import Test from './assets/js/test';
+import Test from './assets/js/Test';
 // import Store from './assets/js/Store';
 import Storeitem from './assets/js/Storeitem';
 import Admin from './assets/js/admin'
+import Client from './assets/js/ClientBar'
 
 import Support from './assets/js/Support'
-import ShoppingCartProvider from './context/ShoppingCartContext';
 function App() {
   return (
     
@@ -38,6 +37,7 @@ function App() {
       <Route path = '/Connexion' element = {<Connexion/>}/>
       <Route path='/Inscription' element = {<Test/>}/>
       <Route path='/Admin' element = {<Admin/>}/>
+      <Route path='/Connecter' element ={<Client/>}/>
       
     </Routes>
     <Footer/>

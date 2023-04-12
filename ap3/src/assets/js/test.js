@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 // import { Formik, Field, Form } from "formik";
 import "../styles/Style.css";
 import '../styles/test.css';
@@ -62,12 +61,6 @@ export default  function Test() {
                     <button className="btn btn-primary mt-3" type="submit" onClick={register} lstyle={{ marginRight: 20}}>Enregistrer</button>
                     <h1 style ={{fontSize:'15px', textAlign: 'center', marginTop:'20'}}>{registerStatus}</h1>
                     <button className="btn btn-warning mt-3" type="reset">supprimer</button>
-                    {/* <Field label="Entrer votre prénom" name="Prenom" type="text" />
-                    <Field label="Entrer votre E-mail" name="email" type="email" />
-                    <Field label="Entrer votre mot de passe" name="Mdp" type="password" />
-                    <Field label="Confirmer votre mot de passe" name="confirMdp" type="password" />
-                    <button className="btn btn-primary mt-3" type="submit" style={{ marginRight: 20 }}>Enregistrer</button>
-                    <button className="btn btn-warning mt-3" type="reset">supprimer</button> */}
                 </form>
                 </div>
         </div>

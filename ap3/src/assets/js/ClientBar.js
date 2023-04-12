@@ -1,17 +1,14 @@
 import React from 'react'
-import user_svg from '../images/user.svg'
-import cart_svg from '../images/cart.svg'
 import "../styles/Navbar.css"
 import "../styles/Style.css"
 import logo from '../images/logo.jpg'
-import { Link } from 'react-router-dom'
 
 
 
-import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
+import { Button, Container, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const  Navbar =() => {
+const  NavbarClient =() => {
   return (
 
     <NavbarBs className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
@@ -31,13 +28,15 @@ const  Navbar =() => {
               <NavLink className="nav-link" to="/">Accueil</NavLink>
             </li>
             <li>
+              <NavLink className="nav-link"  to = "/Produit" as ={NavLink}>
+                Produit
+              </NavLink>
+            </li>
+            <li>
               <NavLink className="nav-link" to="About">à propos de nous</NavLink>
             </li>
             <li>
               <NavLink className="nav-link" to='/Connexion'>Connexion</NavLink>
-            </li>
-            <li>
-              <NavLink className="nav-link" to='/Inscription'>Inscription</NavLink>
             </li>
             <li>
               <NavLink className="nav-link" to ='/Support'>Nous contacter</NavLink>
@@ -74,4 +73,4 @@ const  Navbar =() => {
   )
 }
 
-export default Navbar
+export default NavbarClient
