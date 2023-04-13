@@ -14,7 +14,7 @@ import Connexion from './assets/js/connexion';
 
 import {BrowserRouter} from 'react-router-dom';
 import ErrorBoundary from './assets/js/error';
-import Test from './assets/js/Test';
+import Test from './assets/js/test';
 // import Store from './assets/js/Store';
 import Storeitem from './assets/js/Storeitem';
 import Admin from './assets/js/admin'

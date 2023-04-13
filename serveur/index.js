@@ -19,7 +19,7 @@ app.use(cors());
 
 require('dotenv').config()
 
-const con = mysql.createConnection({
+const con = mariadb.createPool({
     host: process.env.DB_HOST,
     database: process.env.DB_DTB,
     user: process.env.DB_USER,
@@ -63,14 +63,14 @@ app.post ('/utilisateur', (req, res) => {
 // })
 app.post('/connexion', async (req, res) => {  
     const id = parseInt(req.params.id);
-    const { mail, mdp } = req.body;
+    const { Email, Mdp } = req.body;
     let conn; 
     try {
       console.log("Lancement de la connexion");
-      conn = await pool.getConnection();
+      conn = await con.getConnection();
       console.log("Lancement de la requête");
       // Interroger la base de données pour récupérer l'utilisateur
-      const rows = await conn.query('SELECT * FROM utilisateur WHERE Email = ? AND Mdp = ?', [mail, mdp]);
+      const rows = await conn.query('SELECT * FROM utilisateur  WHERE Email = ? AND Mdp = ?', [Email, Mdp]);
       console.log(rows);
       // Si un utilisateur est trouvé, le renvoyer, sinon renvoyer une erreur d'authentification
       if (rows.length === 1) {

@@ -47,7 +47,7 @@ export default function Connexion (){
                     </div>
                     <div className="cut"></div>
                     {(errors.Email || errors.Mdp) ? <span>Tous les champs doivent être remplis</span> : ""}
-                    <button className="btn btn-primary mt-3" type="submit"lstyle={{ marginRight: 20}}>Connexion</button>
+                    <button className="btn btn-primary mt-3" type="submit" style={{ marginRight: 20}}>Connexion</button>
                     <button className="btn btn-warning mt-3" type="reset">supprimer</button>
                 </form>
                 <br/><br/>
