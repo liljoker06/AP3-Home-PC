@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import Navbar from "./Navbar";
 
 export default function Connexion (){
+    let ls = localStorage;
     const {register, formState : {errors}} = useForm();
     let navigate = useNavigate();
 
@@ -21,11 +22,20 @@ export default function Connexion (){
             Mdp : Mdp,
         }).then(res => {
             console.log(res)
-            if(res.status === 200) {
+            if(res.status === 200 && res.data.Role === 1) {
+                console.log(res.data[0])
+                ls.setItem("Email",res.data[0].Email)
+                ls.setItem("Role",res.data[0].Role)
+                ls.setItem("Nom",res.data[0].Nom)
+                alert("Connexion reussi")
+                navigate("/Admin")
+            }if( res.data.Role === 0){
+                console.log(res.data[0])
+                ls.setItem("Email",res.data[0].Email)
+                ls.setItem("Role",res.data[0].Role)
+                ls.setItem("Nom",res.data[0].Nom)
                 alert("Connexion reussi")
                 navigate("/Produit")
-            }else{
-                alert("Erreur de connexion")
             }
         })
     }

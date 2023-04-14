@@ -1,61 +1,62 @@
-import React from "react";
+import React from 'react'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom'
+import { FaTrash, FaPen } from 'react-icons/fa';
+import AdminBar from './AdminBar';
+import '../styles/AdminCard.css';
 
-const Admin = () =>{
-    return(
-        <NavbarBs className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
-        <script src="https://kit.fontawesome.com/d8b6aee33e.js" crossOrigin="anonymous"></script>
-  
-        <Container>
-          <a className="navbar-brand" href="#nav"><img src={logo} alt="" className="logo" /></a>
-  
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-  
-          <div className="collapse navbar-collapse" id="navbarsFurni">
-            <ul className="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
-              <li className="">
-                <NavLink className="nav-link" to="/">Accueil</NavLink>
-              </li>
-              <li>
-                <NavLink className="nav-link" to="/About">à propos de nous</NavLink>
-              </li>
-              <li>
-                <NavLink className="nav-link" to='/Connexion'>Connexion</NavLink>
-              </li>
-              <li>
-                <NavLink className="nav-link" to ='/Support'>Admin</NavLink>
-              </li>
-              <li>
-              
-            <Button
-              style={{ height: "3rem", position: "relative", background : "#f9bf29", borderColor: "#f9bf29" }}
-              variant="outline-primary"
-              className="rounded-circle"
-              onClick=""
-            >
-              <i class="fa-solid fa-cart-shopping" style={{color : "#cc0808"}}></i>
-              <div className='rounded-circle bg-danger d-flex justify-content-center align-items-center ' style={{position:"absolute", width:"1.5rem", height:"1.5rem", bottom:0, right:0, transform:"translate(25%, 25%)",}}>
-                3
-              </div>
-            </Button>
-              </li>
-            </ul>
-            
-  
-  
-          </div>
-  
-  
-  
-        </Container>
-  
-  
-  
-      </NavbarBs>
+import { Button, Card, Container, Row } from 'react-bootstrap';
 
+
+export default function ProduitAdmin() {
+    const [produits, setProduits] = useState([])
+    const [affichage, setAffichage] = useState(false)
+
+    const recup = async () => {
+        await axios.get(`http://localhost:3001/articles`)
+            .then(res => {
+                console.log(res)
+                setProduits(res.data)
+                setAffichage(true)
+            })
+    }
+
+    useEffect(() => {
+        recup()
+    }, [])
+
+    
+
+    return (
+        <div>
+          <AdminBar/>
+        <div className='body'>
+            <h2> Les Produit</h2>
+            <div className="boxarticles">
+                {affichage ?
+                    produits.map(produit => (
+                        <div key={`produit-${produit.id}`}>
+                          <div className='box-title' >
+                                Articles n° {produit.id}  {produit.nom}
+                            </div>
+                            <div className='box-body'>
+                                {produit.prix} €
+                                <br />
+                                <Card.Img variant="top" alt={produit.nom} src={`${process.env.PUBLIC_URL}/${produit.imgUrl}`} />
+                                <br />
+                                {produit.quantity}
+                            </div>
+                            <div className='box-link1'>
+                                <Link to={'/Modifier' +  produit.id}><FaPen /></Link>
+                                <Link to={'/Supprimer'+ produit.id}><FaTrash /></Link>
+                            </div>
+                        </div>
+                    ))
+                    : <p>Chargement...</p>
+                    }
+            </div>
+        </div>
+        </div>
     )
 }
-
-export default Admin 

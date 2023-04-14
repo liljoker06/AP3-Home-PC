@@ -1,6 +1,5 @@
 import React from 'react'
 import "../styles/About.css"
-import couch_png from '../images/couch.png'
 import "../styles/Style.css"
 import logo from "../images/About.png"
 import enfant from "../images/enfant.png";

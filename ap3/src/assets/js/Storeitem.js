@@ -7,8 +7,11 @@ import NavbarClient from './ClientBar';
 
 
 function Produits() {
+  let ls = localStorage;
+
+  
   const [produits, setProduits] = useState([]);
-  const [, updateState] = React.useState("1");
+  const [,updateState] = React.useState("1");
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
   useEffect(() => {
@@ -22,22 +25,26 @@ function Produits() {
   }, []);
 
   const getItemsQuantiy = (id) => {
+    ls.getItem(id)
     return produits.find((produit) => produit.id === id)?.quantity || 0
   };
 
   const increaseCardQuantity = (id) => {
+    console.log(id)
     const calculPositif = (id) => {
-      const produitFound = produits.find(produit => produit._id === id);
+      const produitFound = produits.find(produit => produit.id === id);
       if (!produitFound) {
         
         return [...produits, { id, quantity: 1 }]
       }else{
         if(!produitFound.quantity){
           produitFound.quantity = 1;
-          console.log("je suis la",produits) 
+          ls.setItem(id,produitFound.quantity)
+          console.log("je suis la",produits, ls) 
         }else{
           produitFound.quantity++
-          console.log("je suis la X2", produits)
+          ls.setItem(id,produitFound.quantity)
+          console.log("je suis la X2", produits, ls)
         }
         return (
           produits
@@ -47,6 +54,55 @@ function Produits() {
     setProduits(calculPositif(id));
     forceUpdate();
   }
+
+  const decreaseCardQuantity = (id) => {
+    console.log(id)
+    const calculnegatif = (id) => {
+      const produitFound = produits.find(produit => produit.id === id);
+      if (!produitFound) {
+        
+        return [...produits, { id, quantity: 0 }]
+      }else{
+        if(!produitFound.quantity){
+          produitFound.quantity = 0;
+          ls.setItem(id,produitFound.quantity)
+          console.log("je suis la",produits, ls) 
+        }else{
+          produitFound.quantity--
+          ls.setItem(id,produitFound.quantity)
+          console.log("je suis la X2", produits, ls)
+        }
+        return (
+          produits
+        )
+      }
+    }
+    setProduits(calculnegatif(id));
+    forceUpdate();
+  }
+
+  const deleteCardQuantity = (id) => {
+    console.log(id)
+    const calculnegatif = (id) => {
+      const produitFound = produits.find(produit => produit.id === id);
+      if (!produitFound) {
+        
+        return [...produits, { id, quantity: 0 }]
+      }else{
+        if(produitFound.quantity){
+          produitFound.quantity = 0;
+          ls.removeItem(id,produitFound.quantity)
+          console.log("je suis la",produits, ls) 
+        }
+        return (
+          produits
+        )
+      }
+    }
+    setProduits(calculnegatif(id));
+    forceUpdate();
+  }
+
 
   return (
     <div>
@@ -68,16 +124,16 @@ function Produits() {
               </Card.Body>
               <Card.Footer className='text-muted'>
                 {produit.prix} € <br />
-                {getItemsQuantiy(produit._id) === 0 ? (
-                  <Button variant='w-100' onClick={() => increaseCardQuantity(produit._id)} > ajouter au panier</Button>
+                {getItemsQuantiy(produit.id) === 0 ? (
+                  <Button variant='w-100' onClick={() => increaseCardQuantity(produit.id)} > ajouter au panier</Button>
                 ) : (
                   <div className='d-flex align-items-center flex-column'>
                     <div className='d-flex align-items-center justify-content-center'>
-                      <Button> - </Button>
-                      <span className='fs-3'>{getItemsQuantiy(produit._id)}</span>
-                      <Button onClick={() => increaseCardQuantity(produit._id)}> + </Button>
+                      <Button onClick={() => decreaseCardQuantity(produit.id)} > - </Button>
+                      <span className='fs-3'>{getItemsQuantiy(produit.id)}</span>
+                      <Button onClick={() => increaseCardQuantity(produit.id)}> + </Button>
                     </div>
-                    <Button> supprimer </Button>
+                    <Button onClick={() => deleteCardQuantity(produit.id)} > supprimer </Button>
                   </div>
                 )}
               </Card.Footer>

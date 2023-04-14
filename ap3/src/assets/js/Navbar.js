@@ -1,14 +1,12 @@
 import React from 'react'
-import user_svg from '../images/user.svg'
-import cart_svg from '../images/cart.svg'
 import "../styles/Navbar.css"
 import "../styles/Style.css"
 import logo from '../images/logo.jpg'
-import { Link } from 'react-router-dom'
 
 
 
-import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
+
+import { Button, Container, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const  Navbar =() => {

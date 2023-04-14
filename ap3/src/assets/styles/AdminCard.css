@@ -1,0 +1,22 @@
+.boxarticles {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.boxarticles>* {
+    padding: 5px 0;
+    flex: 0 0 400px;
+    border: solid 1px #f0d43a;
+    margin: 10px auto;
+}
+
+.box-title {
+    font-weight: bold;
+}
+
+
+
+.box-link1>a {
+    color: #ea1111;
+    margin: 0 3px;
+}

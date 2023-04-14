@@ -23,7 +23,8 @@ const con = mariadb.createPool({
     host: process.env.DB_HOST,
     database: process.env.DB_DTB,
     user: process.env.DB_USER,
-    password: process.env.DB_PWD
+    password: process.env.DB_PWD,
+    connectionLimit : 100,
 })
 
 app.post ('/utilisateur', (req, res) => {
@@ -74,7 +75,7 @@ app.post('/connexion', async (req, res) => {
       console.log(rows);
       // Si un utilisateur est trouvé, le renvoyer, sinon renvoyer une erreur d'authentification
       if (rows.length === 1) {
-        res.status(200).json({message: "Connexion reussi !!"});
+        res.status(200).json(rows);
       } else {
         console.log("pas correct")
         res.status(401).json({ message: "Nom d'utilisateur ou mot de passe incorrect." });
@@ -106,19 +107,117 @@ app.post ('/support', (req, res) => {
     )
 })
 
-app.get('/produit', (req, res) => {
-    const sql = 'SELECT * FROM produit';
-    con.query(sql, (error, results) => {
-    if (error) {
-      console.log('Erreur de récupération des produits : ', error);
-      res.status(500).json({ error });
-    } else {
-      console.log('Produits récupérés avec succès');
-      res.status(200).json(results);
-    }
-  });
-});
+// app.get('/produit', (req, res) => {
+//   console.log("je suis là")
+//     const sql = 'SELECT * FROM produit';
+//     con.query(sql, (error, results) => {
+//     if (error) {
+//       console.log('Erreur de récupération des produits : ', results);
+//       res.status(500).json({ error });
+//     } else {
+//       console.log('Produits récupérés avec succès');
+//       res.status(200).json(results);
+//     }
+//   });
+// });
 
+app.get('/produit', async(req,res) => {
+  let conn; 
+  try{
+      console.log("lancement de la connexion")
+      conn = await con.getConnection();
+      console.log("lancement de la requete")
+      const rows = await conn.query('SELECT * FROM produit');
+      console.log(rows);
+      res.status(200).json(rows)
+  }
+  catch(err){
+      // On affiche les erreurs s'il y en a une
+      console.log(err)
+  }
+})
+
+
+
+
+//ADMIN
+app.get('/articles', async (req, res) => {
+  let conn;
+  try {
+      conn = await con.getConnection();
+      const rows = await conn.query('SELECT * FROM produit');
+      res.status(200).json(rows)
+  }
+  catch (err) {
+      console.log(err);
+  }
+})
+
+app.get('/articles/:id', async (req, res) => {
+  const id = parseInt(req.params.id)
+  let conn;
+  try {
+      console.log("lancement de la connexion")
+      conn = await con.getConnection();
+      console.log("lancement de la requete select")
+      const rows = await conn.query('SELECT * FROM produit WHERE id = ?', [id]);
+      res.status(200).json(rows)
+  }
+  catch (err) {
+      console.log(err);
+  }
+})
+
+app.post('/articles', async (req, res) => {
+  let conn;
+  try {
+      console.log("lancement de la connexion")
+      conn = await con.getConnection();
+      console.log("lancement de la requete insert")
+      console.log(req.body);
+      let requete = 'INSERT INTO produit (nom, prix, imgUrl, quantity) VALUES (?, ?, ?, ?);'
+      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, res.body.quantity]);
+      console.log(rows);
+      res.status(200).json(rows.affectedRows)
+  }
+  catch (err) {
+      console.log(err);
+  }
+})
+
+app.put('/articles/:id', async (req, res) => {
+  const id = parseInt(req.params.id)
+  let conn;
+  try {
+      console.log("lancement de la connexion")
+      conn = await con.getConnection();
+      console.log("lancement de la requete update")
+      let requete = 'UPDATE peoduit SET nom = ?, prix = ?, imgUrl = ?, quantity = ? WHERE id = ?;'
+      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, req.body.quantity ,id]);
+      console.log(rows);
+      res.status(200).json(rows.affectedRows)
+  }
+  catch (err) {
+      console.log(err);
+  }
+})
+
+app.delete('/articles/:id', async (req, res) => {
+  const id = parseInt(req.params.id)
+  let conn;
+  try {
+      console.log("lancement de la connexion")
+      conn = await con.getConnection();
+      console.log("lancement de la requete delete")
+      let requete = 'DELETE FROM produit WHERE  id= ?;'
+      let rows = await conn.query(requete, [id]);
+      console.log(rows);
+      res.status(200).json(rows.affectedRows)
+  }
+  catch (err) {
+      console.log(err);
+  }
+})
 
 
 app.listen(3001, () =>{
