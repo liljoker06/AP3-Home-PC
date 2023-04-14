@@ -22,14 +22,7 @@ export default function Connexion (){
             Mdp : Mdp,
         }).then(res => {
             console.log(res)
-            if(res.status === 200 && res.data.Role === 1) {
-                console.log(res.data[0])
-                ls.setItem("Email",res.data[0].Email)
-                ls.setItem("Role",res.data[0].Role)
-                ls.setItem("Nom",res.data[0].Nom)
-                alert("Connexion reussi")
-                navigate("/Admin")
-            }if( res.data.Role === 0){
+            if(res.status === 200) {
                 console.log(res.data[0])
                 ls.setItem("Email",res.data[0].Email)
                 ls.setItem("Role",res.data[0].Role)
