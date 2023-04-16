@@ -32,28 +32,29 @@ export default function Connexion (){
     //         }
     //     })
     // }
-    const connexion = (e, role) => {
+    const connexion = (e) => {
         e.preventDefault();
-        Axios.post("http://localhost:3001/Connexion",{
-            Email : Email,
-            Mdp : Mdp,
-            Role : role 
+        Axios.post("http://localhost:3001/Connexion", {
+            Email: Email,
+            Mdp: Mdp,
         }).then(res => {
-            console.log(res); 
+            console.log(res);
             if (res.status === 200) {
                 console.log(res.data[0]);
                 ls.setItem("Email", res.data[0].Email);
                 ls.setItem("Role", res.data[0].Role);
                 ls.setItem("Nom", res.data[0].Nom);
-            alert("Connexion reussie");
-            if (role === 0){
-                navigate("/Produit")
-            }else{
-                navigate("/Admin")
-            }
+                alert("Connexion réussie");
+                if (res.data[0].Role === 0) {
+                    navigate("/Produit");
+                }else if (res.data[0].Role === 1) {
+                    navigate("/Admin");
+                }
             }
         })
     }
+    
+      
 
 
     return (

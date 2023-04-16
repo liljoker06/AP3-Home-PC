@@ -21,7 +21,8 @@ import Client from './assets/js/ClientBar'
 import Supprimer from './assets/js/supprimer';
 import Modifier from'./assets/js/modifier';
 
-import Support from './assets/js/Support'
+import Support from './assets/js/Support';
+
 function App() {
   return (
     

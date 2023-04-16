@@ -6,7 +6,7 @@ import { FaTrash, FaPen } from 'react-icons/fa';
 import AdminBar from './AdminBar';
 import '../styles/AdminCard.css';
 
-import { Button, Card, Container, Row } from 'react-bootstrap';
+import { Card  } from 'react-bootstrap';
 
 
 export default function ProduitAdmin() {
