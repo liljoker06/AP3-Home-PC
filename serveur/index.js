@@ -8,14 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// const con = mysql.createConnection(
-//     {
-//         user: "root",
-//         host: "localhost",
-//         password: "",
-//         database: "ap3",
-//     }
-// )
+
 
 require('dotenv').config()
 
@@ -175,8 +168,8 @@ app.post('/articles', async (req, res) => {
       conn = await con.getConnection();
       console.log("lancement de la requete insert")
       console.log(req.body);
-      let requete = 'INSERT INTO produit (nom, prix, imgUrl, quantity) VALUES (?, ?, ?, ?);'
-      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, res.body.quantity]);
+      let requete = 'INSERT INTO produit (nom, prix, imgUrl, quantityP) VALUES (?, ?, ?, ?);'
+      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, res.body.quantityP]);
       console.log(rows);
       res.status(200).json(rows.affectedRows)
   }
@@ -191,9 +184,9 @@ app.put('/articles/:id', async (req, res) => {
   try {
       console.log("lancement de la connexion")
       conn = await con.getConnection();
-      console.log("lancement de la requete update")
-      let requete = 'UPDATE peoduit SET nom = ?, prix = ?, imgUrl = ?, quantity = ? WHERE id = ?;'
-      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, req.body.quantity ,id]);
+      console.log("lancement de la requete update",req.body)
+      let requete = 'UPDATE produit SET nom = ?, prix = ?, imgUrl = ?, quantityP = ? WHERE id = ?;'
+      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, req.body.quantityP ,id]);
       console.log(rows);
       res.status(200).json(rows.affectedRows)
   }

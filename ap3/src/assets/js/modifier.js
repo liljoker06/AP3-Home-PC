@@ -29,16 +29,17 @@ export default function EditArticles(){
     const EditArticles = async() => {
         console.log("edit");
         await axios.put('http://localhost:3001/articles/'+ id, {
-            name : name, 
+            nom : name, 
             prix : prix,
             imgUrl : image, 
             quantityP : quantite 
         })
         .then(res => {
             console.log(res)
+            console.log("EDIT 2 ")
             if (res.status === 200) {
                 alert("Envoie réussi")
-                navigate("/")
+                navigate("/Modifier/")
             }
             else{
                 alert("Erreur d'envoi")
