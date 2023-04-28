@@ -22,6 +22,7 @@ import Supprimer from './assets/js/supprimer';
 import Modifier from'./assets/js/modifier';
 
 import Support from './assets/js/Support';
+import Panier from './assets/js/Panier';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
       <Route path='/Connecter' element ={<Client/>}/>
       <Route path='/Supprimer/:id' element ={<Supprimer/>}/>
       <Route path='/Modifier/:id' element = {<Modifier/>}/>
+      <Route path='/Panier' element = {<Panier/>}/>
     </Routes>
     <Footer/>
     </ErrorBoundary>
