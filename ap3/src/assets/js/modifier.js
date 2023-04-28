@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'; 
+import React, {  useEffect, useState } from 'react'; 
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
 export default function EditArticles(){
     let {id} = useParams()
-    const {handelSubmit, formStates :{errors} } = useForm();
+    const {handleSubmit, formState :{errors} } = useForm();
     let navigate = useNavigate(); 
 
 
@@ -18,15 +18,17 @@ export default function EditArticles(){
     const recup = async () => {
         await axios.get('http://localhost:3001/articles/' + id)
         .then(res=> {
+            console.log(res.data);
             setName(res.data[0].nom)
             setPrix(res.data[0].prix)
-            setImage(res.data[0].image)
-            setQuantite(res.data[0].quantite)
+            setImage(res.data[0].imgUrl)
+            setQuantite(res.data[0].quantityP)
         })
     }
 
     const EditArticles = async() => {
-        await axios.put('http://localhost:8000/articles/'+ id, {
+        console.log("edit");
+        await axios.put('http://localhost:3001/articles/'+ id, {
             name : name, 
             prix : prix,
             imgUrl : image, 
@@ -46,6 +48,7 @@ export default function EditArticles(){
 
     useEffect(() => {
         recup()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     return (
@@ -53,7 +56,7 @@ export default function EditArticles(){
         <div className='container'>
             <h2> Editer un article</h2>
 
-            <form onSubmit={handelSubmit(EditArticles )}>
+            <form onSubmit={handleSubmit(EditArticles )}>
                 <label>Nom : </label>
                 <input defaultValue={name} onChange={(e) => setName(e.target.value)} />
                 <br/>

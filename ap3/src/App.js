@@ -38,9 +38,8 @@ function App() {
       <Route path='/Inscription' element = {<Test/>}/>
       <Route path='/Admin' element = {<Admin/>}/>
       <Route path='/Connecter' element ={<Client/>}/>
-      <Route path='/Supprimer' element ={<Supprimer/>}/>
-      <Route path='/Modifier' element = {<Modifier/>}/>
-      
+      <Route path='/Supprimer/:id' element ={<Supprimer/>}/>
+      <Route path='/Modifier/:id' element = {<Modifier/>}/>
     </Routes>
     <Footer/>
     </ErrorBoundary>

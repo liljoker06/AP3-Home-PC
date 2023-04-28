@@ -48,8 +48,8 @@ export default function ProduitAdmin() {
                                 {produit.quantity}
                             </div>
                             <div className='box-link1'>
-                                <Link to={'/Modifier' +  produit.id}><FaPen /></Link>
-                                <Link to={'/Supprimer'+ produit.id}><FaTrash /></Link>
+                                <Link to={'/Modifier/' +  produit.id}><FaPen /></Link>
+                                <Link to={'/Supprimer/'+ produit.id}><FaTrash /></Link>
                             </div>
                         </div>
                     ))
