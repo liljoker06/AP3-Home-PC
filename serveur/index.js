@@ -161,22 +161,56 @@ app.get('/articles/:id', async (req, res) => {
   }
 })
 
+// app.post('/articles', async (req, res) => {
+//   let conn;
+//   try {
+//       console.log("lancement de la connexion")
+//       conn = await con.getConnection();
+//       console.log("lancement de la requete insert")
+//       console.log(req.body);
+//       let requete = 'INSERT INTO produit (nom, prix, imgUrl, quantityP) VALUES (?, ?, ?, ?);'
+//       let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, res.body.quantityP]);
+//       console.log(rows);
+//       res.status(200).json(rows.affectedRows)
+//   }
+//   catch (err) {
+//       console.log(err);
+//   }
+// })
+
+// app.post ('/articles', (req, res) => {
+//     const nom = req.body.nom
+//     const prix= req.body.prix
+//     const imgUrl = req.body.imgUrl
+//     const quantityP = req.body.quantityP
+
+//     con.query('INSERT INTO support (nom, prix, imgUrl, quantityP) Values(?,?,?,?)', [nom, prix, imgUrl, quantityP],
+//         (err, result) => {
+//             if(result){
+//                 res.send(result);
+//             }else{
+//                 res.send({message:"donnée incorrect"})
+//             }
+//         }
+//     )
+// })
+
 app.post('/articles', async (req, res) => {
-  let conn;
-  try {
-      console.log("lancement de la connexion")
-      conn = await con.getConnection();
-      console.log("lancement de la requete insert")
-      console.log(req.body);
-      let requete = 'INSERT INTO produit (nom, prix, imgUrl, quantityP) VALUES (?, ?, ?, ?);'
-      let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, res.body.quantityP]);
-      console.log(rows);
-      res.status(200).json(rows.affectedRows)
-  }
-  catch (err) {
-      console.log(err);
-  }
+    let conn;
+    try {
+        conn = await con.getConnection();
+        console.log(req.body);
+        let requete = 'INSERT INTO produit (nom, prix, imgUrl, quantityP) VALUES (?, ?, ?, ?);'
+        let rows = await conn.query(requete, [req.body.nom, req.body.prix, req.body.imgUrl, req.body.quantityP]);
+        console.log(rows);
+        res.status(200).json(rows.affectedRows)
+        console.log('kr');
+    }
+    catch (err) {
+        console.log(err);
+    }
 })
+
 
 app.put('/articles/:id', async (req, res) => {
   const id = parseInt(req.params.id)

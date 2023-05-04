@@ -30,24 +30,19 @@ const AdminBar = () =>{
                 <NavLink className="nav-link" to="/About">à propos de nous</NavLink>
               </li>
               <li>
-                <NavLink className="nav-link" to='/Connexion'>Connexion</NavLink>
+                <NavLink className="nav-link" to ='/Ajouter'>Ajout Articles</NavLink>
               </li>
               <li>
-                <NavLink className="nav-link" to ='/Support'>Admin</NavLink>
+                <NavLink className="nav-link" to ='/Ajouter'>Nouveau utilisateur</NavLink>
               </li>
               <li>
-              
-            <Button
-              style={{ height: "3rem", position: "relative", background : "#f9bf29", borderColor: "#f9bf29" }}
-              variant="outline-primary"
-              className="rounded-circle"
-              onClick=""
-            >
-              <i class="fa-solid fa-cart-shopping" style={{color : "#cc0808"}}></i>
-              <div className='rounded-circle bg-danger d-flex justify-content-center align-items-center ' style={{position:"absolute", width:"1.5rem", height:"1.5rem", bottom:0, right:0, transform:"translate(25%, 25%)",}}>
-                3
-              </div>
-            </Button>
+                <NavLink className="nav-link" to ='/Admin'>Produit</NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to ='/Support'>Utilisateur</NavLink>
+              </li>
+              <li>
+                <NavLink className="nav-link" to='/Connexion'>Déconnexion</NavLink>
               </li>
             </ul>
             
