@@ -5,7 +5,7 @@ import logo from '../images/logo.jpg'
 
 
 
-import { Button, Container, Navbar as NavbarBs } from "react-bootstrap";
+import { Container, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const AdminBar = () =>{
@@ -39,7 +39,7 @@ const AdminBar = () =>{
                 <NavLink className="nav-link" to ='/Admin'>Produit</NavLink>
               </li>
               <li>
-                <NavLink className="nav-link" to ='/Support'>Utilisateur</NavLink>
+                <NavLink className="nav-link" to ='/User'>Utilisateur</NavLink>
               </li>
               <li>
                 <NavLink className="nav-link" to='/Connexion'>Déconnexion</NavLink>

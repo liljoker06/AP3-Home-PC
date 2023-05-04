@@ -195,6 +195,55 @@ app.get('/articles/:id', async (req, res) => {
 //     )
 // })
 
+app.get('/user', async (req, res) => {
+    let conn;
+    try {
+        conn = await con.getConnection();
+        const rows = await conn.query('SELECT * FROM utilisateur WHERE Role = 0');
+        res.status(200).json(rows)
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
+
+app.get('/user/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    let conn;
+    try {
+        console.log("lancement de la connexion")
+        conn = await con.getConnection();
+        console.log("lancement de la requete select")
+        const rows = await conn.query('SELECT * FROM utilisateur WHERE id = ? ', [id]);
+        res.status(200).json(rows)
+    }
+    catch (err) {
+        console.log(err);
+    }
+  })
+
+
+
+app.put('/user/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    let conn;
+    try {
+        console.log("lancement de la connexion")
+        conn = await con.getConnection();
+        console.log("lancement de la requete update",req.body)
+        let requete = 'UPDATE utilisateur SET Nom = ?, Prenom = ?, Email = ?, WHERE id = ?;'
+        let rows = await conn.query(requete, [req.body.Nom, req.body.Prenom, req.body.Email,id]);
+        console.log(rows);
+        res.status(200).json(rows.affectedRows)
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
+
+
+
+
 app.post('/articles', async (req, res) => {
     let conn;
     try {

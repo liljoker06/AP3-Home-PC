@@ -5,6 +5,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import React from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
+import AdminBar from "./AdminBar";
 
 export default function SuppressionArticles() {
     const { handleSubmit } = useForm();
@@ -18,7 +19,7 @@ export default function SuppressionArticles() {
                 console.log(res)
                 if (res.status === 200) {
                     alert("Suppression réussi")
-                    navigate("/Modifier");
+                    navigate("/Admin");
                 }
                 else {
                     alert("Erreur de supression")
@@ -27,6 +28,7 @@ export default function SuppressionArticles() {
     }
     return (
     <div>
+        <AdminBar/>
         <div>
             <form onSubmit={handleSubmit(SuppressionArticles)} >
                 <h2> Êtes-vous sûr de vouloir supprimer cette articles ?</h2>

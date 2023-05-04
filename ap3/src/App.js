@@ -24,6 +24,9 @@ import Modifier from'./assets/js/modifier';
 import Support from './assets/js/Support';
 import Panier from './assets/js/Panier';
 import Ajouter from './assets/js/ajouter';
+import User from './assets/js/user';
+import UserModif from './assets/js/UserModif';
+
 
 function App() {
   return (
@@ -44,6 +47,8 @@ function App() {
       <Route path='/Modifier/:id' element = {<Modifier/>}/>
       <Route path='/Panier' element = {<Panier/>}/>
       <Route path='/Ajouter' element = {<Ajouter/>}/>
+      <Route path='/User' element = {<User/>}/>
+      <Route path='/UserModif/:id' element = {<UserModif/>}/>
     </Routes>
     <Footer/>
     </ErrorBoundary>
