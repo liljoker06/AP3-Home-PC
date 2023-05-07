@@ -194,6 +194,22 @@ app.get('/articles/:id', async (req, res) => {
 //         }
 //     )
 // })
+app.post('/user', async (req, res) => {
+    let conn;
+    try {
+        conn = await con.getConnection();
+        console.log(req.body);
+        let requete = 'INSERT INTO utilisateur (Nom, Prenom,Email, Mdp) VALUES (?, ?, ?, ?);'
+        let rows = await conn.query(requete, [req.body.Nom, req.body.Prenom, req.body.Email, req.body.Mdp]);
+        console.log(rows);
+        res.status(200).json(rows.affectedRows)
+        console.log('kr');
+    }
+    catch (err) {
+        console.log(err);
+    }
+})
+
 
 app.get('/user', async (req, res) => {
     let conn;

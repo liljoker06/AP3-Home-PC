@@ -117,9 +117,6 @@ function Produits() {
               <Card.Img variant="top" alt={produit.nom} src={`${process.env.PUBLIC_URL}/${produit.imgUrl}`} />
               <Card.Body>
                 <Card.Text>
-                  {produit.description}
-                </Card.Text>
-                <Card.Text>
                 </Card.Text>
               </Card.Body>
               <Card.Footer className='text-muted'>

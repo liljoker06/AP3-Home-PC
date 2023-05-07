@@ -26,6 +26,7 @@ import Panier from './assets/js/Panier';
 import Ajouter from './assets/js/ajouter';
 import User from './assets/js/user';
 import UserModif from './assets/js/UserModif';
+import UserAjouter from './assets/js/userajouter';
 
 
 function App() {
@@ -49,6 +50,8 @@ function App() {
       <Route path='/Ajouter' element = {<Ajouter/>}/>
       <Route path='/User' element = {<User/>}/>
       <Route path='/UserModif/:id' element = {<UserModif/>}/>
+      <Route path='/UserAjouter' element = {<UserAjouter/>}/>
+
     </Routes>
     <Footer/>
     </ErrorBoundary>

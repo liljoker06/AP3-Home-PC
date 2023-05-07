@@ -36,22 +36,30 @@ export default function ProduitAdmin() {
             <div className="boxarticles">
                 {affichage ?
                     produits.map(produit => (
-                        <div key={`produit-${produit.id}`}>
+                        <Card key={`produit-${produit.id}`} style={{ width: '18rem' }} className="text-center">
                           <div className='box-title' >
-                                Articles n° {produit.id}  {produit.nom}
+                                Articles n° {produit.id}  
                             </div>
+                            <Card.Header>{produit.nom}</Card.Header>
                             <div className='box-body'>
                                 {produit.prix} €
                                 <br />
                                 <Card.Img variant="top" alt={produit.nom} src={`${process.env.PUBLIC_URL}/${produit.imgUrl}`} />
-                                <br />
-                                {produit.quantity}
+                                <Card.Body>
+                                <Card.Text>
+                                </Card.Text>
+                                </Card.Body>
+                                Stock : {produit.quantityP}
                             </div>
-                            <div className='box-link1'>
-                                <Link to={'/Modifier/' +  produit.id}><FaPen /></Link>
-                                <Link to={'/Supprimer/'+ produit.id}><FaTrash /></Link>
+                            <Card.Footer className='text-muted'>
+                            <div className= 'd-flex align-items-center flex-column'>
+                            <div className='d-flex align-items-center justify-content-center'>
+                                <Link to={'/Modifier/' +  produit.id}><FaPen size={32} color='red'/></Link>
+                                <Link to={'/Supprimer/'+ produit.id}><FaTrash size={32} color='red' /></Link>
                             </div>
-                        </div>
+                            </div>
+                            </Card.Footer>
+                        </Card>
                     ))
                     : <p>Chargement...</p>
                     }

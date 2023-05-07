@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, {  useEffect, useState } from 'react'; 
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import AdminBar from './AdminBar';
 
 
 export default function EditArticles(){
@@ -39,7 +40,7 @@ export default function EditArticles(){
             console.log("EDIT 2 ")
             if (res.status === 200) {
                 alert("Envoie réussi")
-                navigate("/Modifier/")
+                navigate("/Admin")
             }
             else{
                 alert("Erreur d'envoi")
@@ -53,28 +54,37 @@ export default function EditArticles(){
     },[])
 
     return (
-        <div>
-        <div className='container'>
-            <h2> Editer un article</h2>
-
-            <form onSubmit={handleSubmit(EditArticles )}>
-                <label>Nom : </label>
-                <input defaultValue={name} onChange={(e) => setName(e.target.value)} />
-                <br/>
-                <label>Prix : </label>
-                <input defaultValue={prix} onChange={(e) => setPrix(e.target.value)} />
-                <br/>
-                <label>image : </label>
-                <input defaultValue={image} onChange={(e) => setImage(e.target.value)} />
-                <br/>
-                <label>Quantité : </label>
-                <input defaultValue={quantite} onChange={(e) => setQuantite(e.target.value)} />
-
-                {(errors.name || errors.prix || errors.image || errors.quantite) ? <span>Tous les champs doivent être remplis</span> : ""}
-
-                <input type="submit" />
-            </form>
+        <div className='App'>
+            <AdminBar/>
+            <div className="form">
+                    <div className="Title">Editer l'article </div>
+                <form className='form' onSubmit={handleSubmit(EditArticles )}>
+                    <label className="taille"> Nom : </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={name} onChange={(e) => setName(e.target.value)} />
+                    </div>
+                    <div className="cut"></div>
+                    <label className="taille"> Prix: </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={prix} onChange={(e) => setPrix(e.target.value)}/>
+                    </div>
+                    <div className="cut"></div>
+                    <label className="taille"> URL de L'image : </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={image} onChange={(e) => setImage(e.target.value)}/>
+                    </div>
+                    <div className="cut"></div>
+                    <label className="taille"> Quantité : </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={quantite} onChange={(e) => setQuantite(e.target.value)}/>
+                    </div>
+                    <div className="cut"></div>
+                    {(errors.name || errors.prix || errors.image || errors.quantite) ? <span>Tous les champs doivent être remplis</span> : ""}
+                    <button className="btn btn-primary mt-3" type="submit" style={{ marginRight: 20}}>Confirmer</button>
+                    <button className="btn btn-warning mt-3" type="reset">supprimer</button>
+                </form>
+                <br/><br/>
+            </div>
         </div>
-    </div>
     )
 }

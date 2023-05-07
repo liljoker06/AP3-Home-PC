@@ -27,13 +27,13 @@ export default function SuppressionArticles() {
             })
     }
     return (
-    <div>
+    <div className="App">
         <AdminBar/>
-        <div>
+        <div className="form">
             <form onSubmit={handleSubmit(SuppressionArticles)} >
-                <h2> Êtes-vous sûr de vouloir supprimer cette articles ?</h2>
-                <input type="submit" value="Valider" />
-                <Link to="/"> Annuler </Link>
+                <h2 style={{color : "white"}}> Êtes-vous sûr de vouloir supprimer cette articles ?</h2>
+                <button className="btn btn-primary mt-3" type="submit"  value = "Valider"style={{ marginRight: 20}}>Confirmer</button>
+                <Link to="/Admin"> <button className="btn btn-primary mt-3" style={{ marginRight: 20}}>Annuler</button> </Link>
             </form>
         </div>
     </div>

@@ -17,7 +17,7 @@ const  Navbar =() => {
       <script src="https://kit.fontawesome.com/d8b6aee33e.js" crossOrigin="anonymous"></script>
 
       <Container>
-        <a className="navbar-brand" href="#nav"><img src={logo} alt="" className="logo" /></a>
+        <NavLink to="/"><a className="navbar-brand" href="#nav"><img src={logo} alt="" className="logo" /></a></NavLink>
 
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>

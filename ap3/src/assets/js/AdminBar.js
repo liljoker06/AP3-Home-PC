@@ -33,7 +33,7 @@ const AdminBar = () =>{
                 <NavLink className="nav-link" to ='/Ajouter'>Ajout Articles</NavLink>
               </li>
               <li>
-                <NavLink className="nav-link" to ='/Ajouter'>Nouveau utilisateur</NavLink>
+                <NavLink className="nav-link" to ='/UserAjouter'>Nouveau utilisateur</NavLink>
               </li>
               <li>
                 <NavLink className="nav-link" to ='/Admin'>Produit</NavLink>
