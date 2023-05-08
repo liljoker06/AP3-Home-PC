@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, {  useEffect, useState } from 'react'; 
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
+import AdminBar from './AdminBar';
 
 
-export default function EditArticles(){
+export default function EditUsers(){
     let {id} = useParams()
     const {handleSubmit, formState :{errors} } = useForm();
     let navigate = useNavigate(); 
@@ -50,26 +51,32 @@ export default function EditArticles(){
     },[])
 
     return (
-        <div>
-        <div className='container'>
-            <h2> Editer un utilisateur</h2>
-
-            <form onSubmit={handleSubmit(EditUsers)}>
-                <label>Nom : </label>
-                <input defaultValue={Nom} onChange={(e) => setNom(e.target.value)} />
-                <br/>
-                <label>Prenom : </label>
-                <input defaultValue={Prenom} onChange={(e) => setPrenom(e.target.value)} />
-                <br/>
-                <label>Email : </label>
-                <input defaultValue={Email} onChange={(e) => setEmail(e.target.value)} />
-                <br/>
-
-                {(errors.Nom || errors.Prenom || errors.Email) ? <span>Tous les champs doivent être remplis</span> : ""}
-
-                <input type="submit" />
-            </form>
+        <div className='App'>
+            <AdminBar/>
+            <div className="form">
+                    <div className="Title">Editer l'utilisateur </div>
+                <form className='form' onSubmit={handleSubmit(EditUsers)}>
+                    <label className="taille"> Email : </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={Email} onChange={(e) => setEmail(e.target.value)} />
+                    </div>
+                    <div className="cut"></div>
+                    <label className="taille"> Nom: </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={Nom} onChange={(e) => setNom(e.target.value)}/>
+                    </div>
+                    <div className="cut"></div>
+                    <label className="taille"> Prenom : </label>
+                    <div className="input-container ic4">
+                    <input defaultValue={Prenom} onChange={(e) => setPrenom(e.target.value)}/>
+                    </div>
+                    <div className="cut"></div>
+                    {(errors.Email || errors.Nom || errors.Prenom) ? <span>Tous les champs doivent être remplis</span> : ""}
+                    <button className="btn btn-primary mt-3" type="submit" style={{ marginRight: 20}}>Confirmer</button>
+                    <button className="btn btn-warning mt-3" type="reset">supprimer</button>
+                </form>
+                <br/><br/>
+            </div>
         </div>
-    </div>
     )
 }

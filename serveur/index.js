@@ -247,7 +247,7 @@ app.put('/user/:id', async (req, res) => {
         console.log("lancement de la connexion")
         conn = await con.getConnection();
         console.log("lancement de la requete update",req.body)
-        let requete = 'UPDATE utilisateur SET Nom = ?, Prenom = ?, Email = ?, WHERE id = ?;'
+        let requete = 'UPDATE utilisateur SET Nom = ?, Prenom = ?, Email = ? WHERE id = ?;'
         let rows = await conn.query(requete, [req.body.Nom, req.body.Prenom, req.body.Email,id]);
         console.log(rows);
         res.status(200).json(rows.affectedRows)

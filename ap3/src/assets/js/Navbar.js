@@ -6,7 +6,7 @@ import logo from '../images/logo.jpg'
 
 
 
-import { Button, Container, Navbar as NavbarBs } from "react-bootstrap";
+import { Container, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const  Navbar =() => {
@@ -39,20 +39,6 @@ const  Navbar =() => {
             </li>
             <li>
               <NavLink className="nav-link" to ='/Support'>Nous contacter</NavLink>
-            </li>
-            <li>
-            
-          <Button
-            style={{ height: "3rem", position: "relative", background : "#f9bf29", borderColor: "#f9bf29" }}
-            variant="outline-primary"
-            className="rounded-circle"
-            onClick=""
-          >
-            <i class="fa-solid fa-cart-shopping" style={{color : "#cc0808"}}></i>
-            <div className='rounded-circle bg-danger d-flex justify-content-center align-items-center ' style={{position:"absolute", width:"1.5rem", height:"1.5rem", bottom:0, right:0, transform:"translate(25%, 25%)",}}>
-              3
-            </div>
-          </Button>
             </li>
           </ul>
           
