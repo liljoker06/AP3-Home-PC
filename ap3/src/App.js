@@ -27,6 +27,7 @@ import Ajouter from './assets/js/ajouter';
 import User from './assets/js/user';
 import UserModif from './assets/js/UserModif';
 import UserAjouter from './assets/js/userajouter';
+import SuppUser from './assets/js/suppuser';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
       <Route path='/User' element = {<User/>}/>
       <Route path='/UserModif/:id' element = {<UserModif/>}/>
       <Route path='/UserAjouter' element = {<UserAjouter/>}/>
+      <Route path='/SuppUser/:id' element = {<SuppUser/>}/>
 
     </Routes>
     <Footer/>

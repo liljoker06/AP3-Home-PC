@@ -194,6 +194,24 @@ app.get('/articles/:id', async (req, res) => {
 //         }
 //     )
 // })
+
+app.delete('/user/:id', async (req, res) => {
+    const id = parseInt(req.params.id)
+    let conn;
+    try {
+        console.log("lancement de la connexion")
+        conn = await con.getConnection();
+        console.log("lancement de la requete delete")
+        let requete = 'DELETE FROM utilisateur WHERE  id= ?;'
+        let rows = await conn.query(requete, [id]);
+        console.log(rows);
+        res.status(200).json(rows.affectedRows)
+    }
+    catch (err) {
+        console.log(err);
+    }
+  })
+
 app.post('/user', async (req, res) => {
     let conn;
     try {

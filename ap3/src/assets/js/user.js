@@ -47,7 +47,7 @@ export default function ProduitAdmin() {
                             </div>
                             <div className='box-link1'>
                                 <Link to={'/UserModif/' +  utilisateur.id}><FaPen /></Link>
-                                <Link to={'/Supprimer/'+ utilisateur.id}><FaTrash /></Link>
+                                <Link to={'/SuppUser/'+ utilisateur.id}><FaTrash /></Link>
                             </div>
                         </div>
                     ))
