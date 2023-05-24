@@ -1,7 +1,9 @@
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-const mariadb = require('mariadb')
+const mariadb = require('mariadb');
+const bcrypt = require("bcrypt");
+
 
 const app = express();
 
@@ -20,21 +22,38 @@ const con = mariadb.createPool({
     connectionLimit : 100,
 })
 
-app.post ('/utilisateur', (req, res) => {
-    const Nom = req.body.Nom
-    const Prenom = req.body.Prenom
-    const Email = req.body.Email
-    const Mdp = req.body.Mdp 
+// app.post ('/utilisateur', (req, res) => {
+//     const Nom = req.body.Nom
+//     const Prenom = req.body.Prenom
+//     const Email = req.body.Email
+//     const Mdp = req.body.Mdp 
 
-    con.query("INSERT INTO utilisateur(Nom, Prenom, Email, Mdp) Values(?,?,?,?)", [Nom, Prenom, Email, Mdp],
-        (err, result) => {
-            if(result){
-                res.send(result);
-            }else{
-                res.send({message:"donnée incorrect"})
-            }
-        }
-    )
+//     con.query("INSERT INTO utilisateur(Nom, Prenom, Email, Mdp) Values(?,?,?,?)", [Nom, Prenom, Email, Mdp],
+//         (err, result) => {
+//             if(result){
+//                 res.send(result);
+//             }else{
+//                 res.send({message:"donnée incorrect"})
+//             }
+//         }
+//     )
+// })
+
+app.post('/utilisateur', async (req, res) => {
+    let conn;
+
+    bcrypt.hash(req.body.Mdp, 10)
+    .then(async (hash) => {
+        console.log("lancement de la connexion")
+        conn = await con.getConnection();
+        console.log("lancement de la requete insert")
+        console.log(req.body);
+        let requete = 'INSERT INTO utilisateur(Nom, Prenom, Email, Mdp) Values(?,?,?,?);'
+        let rows = await conn.query(requete, [req.body.Nom, req.body.Prenom, req.body.Email, hash ])
+        console.log(rows);
+        res.status(200).json(rows.affectedRows)
+    }
+    ).catch((error) => res.status(500).json(error))
 })
 
 // app.post ('/Connexion', (req, res) => {
