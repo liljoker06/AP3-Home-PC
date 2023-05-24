@@ -74,33 +74,56 @@ app.post('/utilisateur', async (req, res) => {
 //         }
 //     )
 // })
-app.post('/connexion', async (req, res) => {  
-    const id = parseInt(req.params.id);
+// app.post('/connexion', async (req, res) => {  
+//     const id = parseInt(req.params.id);
+//     const { Email, Mdp } = req.body;
+//     let conn; 
+//     try {
+//       console.log("Lancement de la connexion");
+//       conn = await con.getConnection();
+//       console.log("Lancement de la requête");
+//       // Interroger la base de données pour récupérer l'utilisateur
+//       const rows = await conn.query('SELECT * FROM utilisateur  WHERE Email = ? AND Mdp = ?', [Email, Mdp]);
+//       console.log(rows);
+//       // Si un utilisateur est trouvé, le renvoyer, sinon renvoyer une erreur d'authentification
+//       if (rows.length === 1) {
+//         res.status(200).json(rows);
+//       } else {
+//         console.log("pas correct")
+//         res.status(401).json({ message: "Nom d'utilisateur ou mot de passe incorrect." });
+//       }
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json({ message: "Une erreur s'est produite lors de la connexion à la base de données." });
+//     } finally {
+//       if (conn) {
+//         conn.release(); // Libérer la connexion à la base de données
+//       }
+//     }
+// });
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+
+  app.post('/connexion', async (req, res) => {
+    conn = await con.getConnection();
     const { Email, Mdp } = req.body;
-    let conn; 
-    try {
-      console.log("Lancement de la connexion");
-      conn = await con.getConnection();
-      console.log("Lancement de la requête");
-      // Interroger la base de données pour récupérer l'utilisateur
-      const rows = await conn.query('SELECT * FROM utilisateur  WHERE Email = ? AND Mdp = ?', [Email, Mdp]);
-      console.log(rows);
-      // Si un utilisateur est trouvé, le renvoyer, sinon renvoyer une erreur d'authentification
-      if (rows.length === 1) {
-        res.status(200).json(rows);
-      } else {
-        console.log("pas correct")
-        res.status(401).json({ message: "Nom d'utilisateur ou mot de passe incorrect." });
+    const query = `SELECT * FROM utilisateur WHERE email = '${Email}'`;
+    const login = await conn.query(query);
+      if (login.length === 0) {
+        console.log('c pas bon1')
+        return res.status(401).json({ message: 'Invalid email ' });
       }
-    } catch (err) {
-      console.log(err);
-      res.status(500).json({ message: "Une erreur s'est produite lors de la connexion à la base de données." });
-    } finally {
-      if (conn) {
-        conn.release(); // Libérer la connexion à la base de données
+      const match = await bcrypt.compare(Mdp, login[0].Mdp);
+      if (!match) {
+        console.log('c pas bon2')
+        return res.status(401).json({ message: 'Invalid email or password' });
       }
-    }
+      console.log('c bon')
+      const indentifiant = {'id':login[0].id,'Email':login[0].Email, 'Role':login[0].Role}
+      res.status(200).json(indentifiant);
 });
+
 
 
 app.post ('/support', (req, res) => {

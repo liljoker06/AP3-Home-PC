@@ -31,7 +31,7 @@ export default function SuppressionArticles() {
         <AdminBar/>
         <div className="form">
             <form onSubmit={handleSubmit(SuppressionUser)} >
-                <h2 style={{color : "white"}}> Êtes-vous sûr de vouloir supprimer cette articles ?</h2>
+                <h2 style={{color : "white"}}> Êtes-vous sûr de vouloir supprimer cette utilisateur ?</h2>
                 <button className="btn btn-primary mt-3" type="submit"  value = "Valider"style={{ marginRight: 20}}>Confirmer</button>
                 <Link to="/Admin"> <button className="btn btn-primary mt-3" style={{ marginRight: 20}}>Annuler</button> </Link>
             </form>

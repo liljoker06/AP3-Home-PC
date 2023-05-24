@@ -50,8 +50,10 @@ export default  function Support() {
                     <div className="cut"></div>
                     <label className="taille"> Votre message </label>
                     <div className="input-container ic4">
-                    <input name="Message" type="text" onChange={(e) => {setMessage(e.target.value)}}/>
+                    <input name="Message"  className="input-container ic4 form-control custom-textarea" rows="4" style={{height : "100px"}} type="text" onChange={(e) => {setMessage(e.target.value)}}/>
                     </div>
+                    <br/>
+                    <br/>
                     <div className="cut"></div>
                     <button className="btn btn-primary mt-3" type="submit" onClick={register} lstyle={{ marginRight: 20}}>Envoyer</button>
                     <h1 style ={{fontSize:'15px', textAlign: 'center', marginTop:'20'}}>{registerStatus}</h1>
