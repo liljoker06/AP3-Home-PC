@@ -14,6 +14,7 @@ function Produits() {
   const [,updateState] = React.useState("1");
   const forceUpdate = React.useCallback(() => updateState({}), []);
 
+
   useEffect(() => {
     Axios.get('http://localhost:3001/produit')
       .then(response => {
@@ -22,7 +23,9 @@ function Produits() {
       .catch(error => {
         console.log('Erreur de récupération des produits : ', error);
       });
-  }, []);
+
+      ls.setItem("cart",JSON.stringify(produits));
+  }, [ls, produits]);
 
   const getItemsQuantiy = (id) => {
     ls.getItem(id)
