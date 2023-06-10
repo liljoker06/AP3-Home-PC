@@ -66,13 +66,14 @@ import React, { useState, useEffect } from 'react';
 import { Card } from 'react-bootstrap';
 import NavbarClient from './ClientBar';
 
+
 function Panier() {
   const [cartItems, setCartItems] = useState([]);
   
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     if (cart && cart.length > 0) {
-      setCartItems(cart);
+      setCartItems();
     }
   }, []);
 
