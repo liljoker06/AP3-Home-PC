@@ -19,7 +19,7 @@ const con = mariadb.createPool({
     database: process.env.DB_DTB,
     user: process.env.DB_USER,
     password: process.env.DB_PWD,
-    connectionLimit : 1000,
+    connectionLimit : 100000000000,
 })
 
 // app.post ('/utilisateur', (req, res) => {

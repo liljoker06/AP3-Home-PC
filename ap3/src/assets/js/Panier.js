@@ -73,7 +73,7 @@ function Panier() {
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     if (cart && cart.length > 0) {
-      setCartItems();
+      setCartItems(cart);
     }
   }, []);
 
@@ -105,8 +105,10 @@ function Panier() {
   };
 
   return (
-    <div className="container">
+    <div>
       <NavbarClient/>
+    <div className="container">
+      
       <h1>Panier</h1>
       {cartItems && cartItems.length > 0 ? (
         <div>
@@ -137,6 +139,7 @@ function Panier() {
       <button className="btn btn-danger" onClick={handleDebugClearCart}>
         Vider le panier (Debug)
       </button>
+    </div>
     </div>
   );
 }

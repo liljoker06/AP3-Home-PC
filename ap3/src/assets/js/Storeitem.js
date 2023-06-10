@@ -24,8 +24,9 @@ function Produits() {
         console.log('Erreur de récupération des produits : ', error);
       });
 
-      ls.setItem("cart",JSON.stringify(produits));
-  }, [ls, produits]);
+      
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getItemsQuantiy = (id) => {
     ls.getItem(id)
@@ -49,6 +50,7 @@ function Produits() {
           ls.setItem(id,produitFound.quantity)
           console.log("je suis la X2", produits, ls)
         }
+        ls.setItem("cart", JSON.stringify(produits));
         return (
           produits
         )
@@ -75,6 +77,7 @@ function Produits() {
           ls.setItem(id,produitFound.quantity)
           console.log("je suis la X2", produits, ls)
         }
+        ls.setItem("cart", JSON.stringify(produits));
         return (
           produits
         )
@@ -97,6 +100,7 @@ function Produits() {
           ls.removeItem(id,produitFound.quantity)
           console.log("je suis la",produits, ls) 
         }
+        ls.setItem("cart", JSON.stringify(produits));
         return (
           produits
         )
