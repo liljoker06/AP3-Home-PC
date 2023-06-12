@@ -197,7 +197,7 @@ function Panier() {
     localStorage.removeItem('cart');
     alert('Commande finalisée !');
   };
-
+  
 
 
   return (
@@ -228,9 +228,6 @@ function Panier() {
                   Montant: {product.prix * produit.quantity}€
                 </Card.Footer>
               </Card>
-      
-            
-            
             );
           })}
         </div>

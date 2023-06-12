@@ -11,8 +11,8 @@ function Produits() {
 
   
   const [produits, setProduits] = useState([]);
-  const [,updateState] = React.useState("1");
-  const forceUpdate = React.useCallback(() => updateState({}), []);
+  // const [,updateState] = React.useState("1");
+  // const forceUpdate = React.useCallback(() => updateState({}), []);
 
 
   useEffect(() => {
