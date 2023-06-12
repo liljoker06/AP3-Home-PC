@@ -37,7 +37,7 @@
 //             {
 //               produits.map(produit => (
 //                   <div key={`produit-${produit.id}`} className="box">
-                      
+
 //                       <div className='box-body'>
 //                           <p>{produit.nom} : {destock}</p>
 //                       </div>
@@ -48,7 +48,7 @@
 //                   </div>
 //               ))}
 //             </div>
-            
+
 //             <br/>
 //             {<p>Total : {count} €</p>}
 //             <button type='button' name='payer'>
@@ -62,31 +62,119 @@
 //   }
 
 
-import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
-import NavbarClient from './ClientBar';
+// import React, { useState, useEffect } from 'react';
+// import { Button, Card, } from 'react-bootstrap';
+// import NavbarClient from './ClientBar';
 
+
+// function Panier() {
+//   const [cartItems, setCartItems] = useState([]);
+
+//   useEffect(() => {
+//     const cart = JSON.parse(localStorage.getItem('cart'));
+//     if (cart && cart.length > 0) {
+//       setCartItems(cart);
+//     }
+//   }, []);
+
+//   const getTotalAmount = () => {
+//     let total = 0;
+//     if (cartItems && cartItems.length > 0) {
+//       cartItems.forEach((produit) => {
+//         if (produit.id) {
+//           total += produit.prix * produit.id;
+//         }
+//       });
+//     }
+//     return total;
+//   };
+
+  // const handleCheckout = () => {
+  //   localStorage.removeItem('cart');
+  //   alert('Commande finalisée !');
+  // };
+
+//   const handleDebugClearCart = () => {
+//     localStorage.removeItem('cart');
+//     alert('Le panier a été vidé !');
+//   };
+
+//   const getItemsQuantiy = (id) => {
+//     localStorage.getItem(id)
+//     return cartItems.find((produit) => produit.id === id)?.quantity || 0
+//   };
+
+//   return (
+//     <div>
+//       <NavbarClient />
+//       <div className="container">
+
+//         <h1>Panier</h1>
+      
+//         {cartItems && cartItems.length > 0 ? (
+//           <div className='row'>
+            
+//               {cartItems
+//                 .filter(produit => getItemsQuantiy(produit.id) > 1)
+//                 .map((produit, index) => (
+                  
+//                   < Card key={index} style={{ width: '18rem' }} className="text-center">
+//                       <Card.Header>{produit.nom}</Card.Header>
+//                       <Card.Img alt={produit.nom} src={`${process.env.PUBLIC_URL}/${produit.imgUrl}`}/>
+//                       <Card.Body>
+//                         <Card.Text>
+//                         </Card.Text>
+//                       </Card.Body>
+//                       <Card.Footer className='text-muted'>
+//                       <p>Prix unitaire: {produit.prix}€</p>
+//                       <p>Quantité: {getItemsQuantiy(produit.id)}</p>
+//                       <p>Montant: {produit.prix * getItemsQuantiy(produit.id)}€</p>
+                      
+                      
+//                       <Button className="btn btn-primary" style={{fontSize : "10px"}}>Diminuer</Button>
+//                       <Button  className="btn btn-primary" style={{fontSize : "10px"}}>Augmenter</Button>
+//                       <Button  className="btn btn-primary"  style={{fontSize : "10px"}}>Supprimer</Button>
+                      
+                      
+//                       </Card.Footer>
+//                     </Card>
+//                 ))}
+             
+//             <h4>Montant total: {getTotalAmount()}€</h4>
+//             <button className="btn btn-primary" onClick={handleCheckout}>
+//               Checkout
+//             </button>
+//           </div>
+//         ): (
+//           <p>Votre panier est vide.</p>
+//         )}
+//         <button className="btn btn-danger" onClick={handleDebugClearCart}>
+//           Vider le panier (Debug)
+//         </button>
+//       </div>
+//     </div> 
+//   );
+// }
+// export default Panier;
+
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Container } from 'react-bootstrap';
+import NavbarClient from './ClientBar';
 
 function Panier() {
   const [cartItems, setCartItems] = useState([]);
-  
+  const [productItems, setProductItems] = useState([]);
+
   useEffect(() => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    if (cart && cart.length > 0) {
-      setCartItems(cart);
-    }
+    const cartData = JSON.parse(localStorage.getItem('cart')) || [];
+    setCartItems(cartData);
+
+    const productData = JSON.parse(localStorage.getItem('product')) || [];
+    setProductItems(productData);
   }, []);
 
-  const getTotalAmount = () => {
-    let total = 0;
-    if (cartItems && cartItems.length > 0) {
-      cartItems.forEach((produit) => {
-        if (produit.id) {
-          total += produit.prix * produit.id;
-        }
-      });
-    }
-    return total;
+  const getProductById = (id) => {
+    return productItems.find((product) => product.id === id);
   };
 
   const handleCheckout = () => {
@@ -94,53 +182,45 @@ function Panier() {
     alert('Commande finalisée !');
   };
 
-  const handleDebugClearCart = () => {
-    localStorage.removeItem('cart');
-    alert('Le panier a été vidé !');
-  };
-
-  const getItemsQuantiy = (id) => {
-    localStorage.getItem(id)
-    return cartItems.find((produit) => produit.id === id)?.quantity || 0
-  };
-
   return (
     <div>
-      <NavbarClient/>
-    <div className="container">
-      
+    <NavbarClient/>
+    <Container className="body">
       <h1>Panier</h1>
-      {cartItems && cartItems.length > 0 ? (
-        <div>
-          <ul className="list-group">
-            {cartItems.map((produit, index) => (
-              <li key={index} className="list-group-item">
-                <Card style={{width: '18rem'}} className='text-center'>
-                <h5>{produit.nom}</h5>
-                <img alt={produit.nom} src={`${process.env.PUBLIC_URL}/${produit.imgUrl}`}></img>
-                <p>Prix unitaire: {produit.prix}€</p>
-                <p>Quantité: {getItemsQuantiy(produit.id)}</p>
-                <p>Montant: {produit.prix * getItemsQuantiy(produit.id)}€</p>
-                <button >Diminuer</button>
-                <button >Augmenter</button>
-                <button >Supprimer</button>
-                </Card>
-              </li>
-            ))}
-          </ul>
-          <h4>Montant total: {getTotalAmount()}€</h4>
-          <button className="btn btn-primary" onClick={handleCheckout}>
-            Checkout
-          </button>
-        </div>
-      ) : (
+      {cartItems.length === 0 ? (
         <p>Votre panier est vide.</p>
+        
+      ) : (
+        <div>
+          {cartItems.map((item, index) => {
+            const product = getProductById(item.id);
+            return (
+              <Container>
+              <Card key={index} style={{ width: '18rem' }} className="text-center">
+                <Card.Header>{product.nom}</Card.Header>
+                <Card.Img variant="top" alt={product.nom} src={`${process.env.PUBLIC_URL}/${product.imgUrl}`} />
+                <Card.Body>
+                  <Card.Text>
+                    Quantité : {item.quantity}
+                  </Card.Text>
+                </Card.Body>
+                <Card.Footer className="text-muted">
+                  Prix unitaire : {product.prix} € <br/>
+                  Montant: {product.prix * item.quantity}€
+                </Card.Footer>
+              </Card>
+              <Button onClick={handleCheckout}>
+                  Acheter
+              </Button>
+            </Container>
+            );
+          })}
+        </div>
       )}
-      <button className="btn btn-danger" onClick={handleDebugClearCart}>
-        Vider le panier (Debug)
-      </button>
-    </div>
+    </Container>
+
     </div>
   );
 }
+
 export default Panier;
