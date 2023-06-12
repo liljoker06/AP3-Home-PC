@@ -1,7 +1,7 @@
 
 import './App.css';
-import { Route,Routes } from 'react-router-dom';
-
+import { Navigate, Route,Routes, useLocation} from 'react-router-dom';
+import {useEffect} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'tiny-slider/dist/tiny-slider.css'; 
@@ -30,6 +30,19 @@ import UserAjouter from './assets/js/userajouter';
 import SuppUser from './assets/js/suppuser';
 
 
+
+const Security = ({ path, element }) => {
+  const isLoggedIn = localStorage.getItem('email') && localStorage.getItem('Role'); // Vérifiez le statut de connexion dans le local storage
+  const location = useLocation();
+
+  return isLoggedIn ? (
+    element
+  ) : (
+    <Navigate to="/Connexion" state={{ from: location.pathname }} /> // Utilisateur non connecté, redirection vers la page de connexion
+  );
+};
+
+
 function App() {
   return (
     
@@ -39,11 +52,11 @@ function App() {
     <Routes>
       <Route path='/'  element={<Header/>}/>
       <Route path='/About'  element={<About/>}/>
-      <Route path='/Produit' element = {<Storeitem/>}/>
+      <Route path='/Produit' element={<Security element = {<Storeitem/>}/>}/>
       <Route path = '/Support' element = {<Support/>}/>
       <Route path = '/Connexion' element = {<Connexion/>}/>
       <Route path='/Inscription' element = {<Test/>}/>
-      <Route path='/Admin' element = {<Admin/>}/>
+      <Route path='/Admin' element={<Security element = {<Admin/>}/>}/>
       <Route path='/Connecter' element ={<Client/>}/>
       <Route path='/Supprimer/:id' element ={<Supprimer/>}/>
       <Route path='/Modifier/:id' element = {<Modifier/>}/>

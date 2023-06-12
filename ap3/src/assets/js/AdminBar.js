@@ -3,12 +3,22 @@ import "../styles/Navbar.css"
 import "../styles/Style.css"
 import logo from '../images/logo.jpg'
 
+import { useNavigate } from "react-router-dom";
 
 
 import { Container, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const AdminBar = () =>{
+
+  let navigate = useNavigate();
+  const deco = () => {
+    localStorage.clear();
+    if (localStorage < 1){
+      navigate("/Connexion")
+    }
+  };
+
     return(
         <NavbarBs className="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
@@ -42,7 +52,7 @@ const AdminBar = () =>{
                 <NavLink className="nav-link" to ='/User'>Utilisateur</NavLink>
               </li>
               <li>
-                <NavLink className="nav-link" to='/Connexion'>Déconnexion</NavLink>
+              <NavLink className="nav-link" to='/Connexion' onClick={deco}>Déconnexion</NavLink>
               </li>
             </ul>
             
