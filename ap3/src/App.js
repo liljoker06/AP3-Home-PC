@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Navigate, Route,Routes, useLocation} from 'react-router-dom';
-import {useEffect} from 'react'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import 'tiny-slider/dist/tiny-slider.css'; 
