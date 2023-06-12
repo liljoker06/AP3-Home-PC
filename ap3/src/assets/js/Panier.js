@@ -77,17 +77,17 @@
 //     }
 //   }, []);
 
-//   const getTotalAmount = () => {
-//     let total = 0;
-//     if (cartItems && cartItems.length > 0) {
-//       cartItems.forEach((produit) => {
-//         if (produit.id) {
-//           total += produit.prix * produit.id;
-//         }
-//       });
-//     }
-//     return total;
-//   };
+  // const getTotalAmount = () => {
+  //   let total = 0;
+  //   if (cartItems && cartItems.length > 0) {
+  //     cartItems.forEach((produit) => {
+  //       if (produit.id) {
+  //         total += produit.prix * produit.id;
+  //       }
+  //     });
+  //   }
+  //   return total;
+  // };
 
   // const handleCheckout = () => {
   //   localStorage.removeItem('cart');
@@ -158,12 +158,13 @@
 // export default Panier;
 
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Container } from 'react-bootstrap';
+import { Button, Card, Container, Row } from 'react-bootstrap';
 import NavbarClient from './ClientBar';
 
 function Panier() {
   const [cartItems, setCartItems] = useState([]);
   const [productItems, setProductItems] = useState([]);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const cartData = JSON.parse(localStorage.getItem('cart')) || [];
@@ -172,6 +173,21 @@ function Panier() {
     const productData = JSON.parse(localStorage.getItem('product')) || [];
     setProductItems(productData);
   }, []);
+
+  useEffect(() => {
+    calculateTotal();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartItems]);
+
+  const calculateTotal = () => {
+    let total = 0;
+    for (const product of cartItems) {
+      const productData = getProductById(product.id);
+      total += productData.prix * product.quantity;
+    }
+    setTotal(total);
+  };
+
 
   const getProductById = (id) => {
     return productItems.find((product) => product.id === id);
@@ -182,43 +198,51 @@ function Panier() {
     alert('Commande finalisée !');
   };
 
+
+
   return (
     <div>
     <NavbarClient/>
     <Container className="body">
+
       <h1>Panier</h1>
+      <Row>
       {cartItems.length === 0 ? (
         <p>Votre panier est vide.</p>
         
       ) : (
-        <div>
-          {cartItems.map((item, index) => {
-            const product = getProductById(item.id);
+        <div className='row'>
+          {cartItems.map((produit, index) => {
+            const product = getProductById(produit.id);
             return (
-              <Container>
               <Card key={index} style={{ width: '18rem' }} className="text-center">
                 <Card.Header>{product.nom}</Card.Header>
                 <Card.Img variant="top" alt={product.nom} src={`${process.env.PUBLIC_URL}/${product.imgUrl}`} />
                 <Card.Body>
                   <Card.Text>
-                    Quantité : {item.quantity}
+                    Quantité : {produit.quantity}
                   </Card.Text>
                 </Card.Body>
                 <Card.Footer className="text-muted">
                   Prix unitaire : {product.prix} € <br/>
-                  Montant: {product.prix * item.quantity}€
+                  Montant: {product.prix * produit.quantity}€
                 </Card.Footer>
               </Card>
-              <Button onClick={handleCheckout}>
-                  Acheter
-              </Button>
-            </Container>
+      
+            
+            
             );
           })}
         </div>
       )}
+      </Row>
     </Container>
-
+    <h4>Montant total: {total}€</h4>
+    <div>
+          <Button onClick={handleCheckout}>
+                  Acheter
+              </Button>
+          </div>
     </div>
   );
 }
